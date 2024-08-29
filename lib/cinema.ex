@@ -1,6 +1,5 @@
 defmodule Cinema do
-  # TODO: read from main repo's README.md
-  @moduledoc false
+  @moduledoc File.read!("README.md")
 
   alias Cinema.Engine
   alias Cinema.Projection

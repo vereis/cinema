@@ -7,6 +7,9 @@ defmodule Cinema.MixProject do
       version: "0.1.0",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
+      docs: [main: "Cinema"],
+      description: "A simple Elixir framework utilizing Ecto and DAGs to incrementally materialize views!",
+      package: package(),
       dialyzer: [
         plt_add_apps: [:iex, :mix, :ex_unit],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
@@ -23,7 +26,16 @@ defmodule Cinema.MixProject do
         "test.watch": :test
       ],
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      source_url: "https://github.com/vereis/cinema",
+      homepage_url: "https://github.com/vereis/cinema"
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/vereis/cinema"}
     ]
   end
 
