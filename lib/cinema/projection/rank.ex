@@ -50,27 +50,12 @@ defmodule Cinema.Projection.Rank do
     iex> # This isn't neccessarily the optimal order, but it is _correct_.
     iex> Rank.derive!(graph, :f)
     [[:a, :b], [:c, :e], :f]
-
-    # Example with a cycle
-    iex> alias #{__MODULE__}
-    iex> graph = [a: [:b], b: [:a]]
-    iex> Rank.derive!(graph, :b)
-    ** (ArgumentError) Projections contain a cycle, cannot derive dependency order.
     ```
   """
   @spec derive!([{module() | [module()]}], module()) :: [module() | [module()]]
   def derive!(projections, projection) do
     # TODO: pretty sure we can raise from `depth_first_rank/2` if a cycle is detected
     #       but I'm not bothered to figure this out right now!
-    graph =
-      projections
-      |> Enum.flat_map(fn {k, vs} -> for v <- vs, do: {k, v} end)
-      |> then(&Graph.add_edges(Graph.new(), &1))
-
-    if Graph.is_cyclic?(graph) do
-      raise ArgumentError, "Projections contain a cycle, cannot derive dependency order."
-    end
-
     ranked_map =
       projections
       |> Enum.sort()

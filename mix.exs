@@ -59,7 +59,6 @@ defmodule Cinema.MixProject do
       {:jason, "~> 1.2"},
       {:postgrex, "~> 0.15"},
       {:sibyl, "~> 0.1.9"},
-      {:libgraph, "~> 0.16.0"},
 
       # Runtime dependencies for tests / linting
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
